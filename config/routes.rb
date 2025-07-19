@@ -11,6 +11,13 @@ Rails.application.routes.draw do
 
   get "home" => "home#index", as: :home
 
+  # API routes
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :sessions, only: [ :index, :show, :create, :update, :destroy ]
+    end
+  end
+
   # Defines the root path route ("/")
   root "home#index"
 end
