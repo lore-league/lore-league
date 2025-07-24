@@ -6,14 +6,12 @@ require File.expand_path('../config/environment', __dir__)
 
 require 'factory_bot_rails'
 require 'helpers'
-require 'knapsack'
 require 'webmock/rspec'
 require 'shoulda/matchers'
-require 'pundit/rspec'
 require 'capybara/rspec'
 
-Knapsack.tracker.config(enable_time_offset_warning: false)
-Knapsack::Adapters::RSpecAdapter.bind
+# Knapsack.tracker.config(enable_time_offset_warning: false)
+# Knapsack::Adapters::RSpecAdapter.bind
 
 FactoryBot.factories.clear
 FactoryBot.reload

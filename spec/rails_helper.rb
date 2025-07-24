@@ -28,13 +28,13 @@ require 'support/retry/message_formatter'
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(
   allow_localhost: true,
-  allow: ['api.github.com', 'chrome-server:4444']
+  allow: [ 'api.github.com', 'chrome-server:4444' ]
 )
 
 RSpec.configure do |config|
   config.render_views = true
-  config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::IntegrationHelpers, type: :request
+  # config.include Devise::Test::ControllerHelpers, type: :controller
+  # config.include Devise::Test::IntegrationHelpers, type: :request
   config.include ActiveJob::TestHelper
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
@@ -58,9 +58,6 @@ RSpec.configure do |config|
   config.before { Prosopite.scan }
   config.after { Prosopite.finish }
 
-  # Reset previous flipper instance
-  config.before { Flipper.instance = nil }
-
   # rspec-retry gem
   # Show retry status in spec process
   config.verbose_retry = true
@@ -80,8 +77,4 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
-end
-
-Flipper.configure do |config|
-  config.default { Flipper.new(Flipper::Adapters::Memory.new) }
 end

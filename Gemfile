@@ -2,66 +2,41 @@ source "https://rubygems.org"
 
 ruby file: ".ruby-version"
 
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"
 
-# Gems
-gem "activeadmin", "~> 3.3"
-gem "active_storage_base64", "~> 3.0.0"
-gem "aws-sdk-s3", "~> 1.192", require: false
-gem "bootsnap", "~> 1.18"
-# gem "cssbundling-rails", "~> 1.4"
-gem "devise", "~> 4.9"
-gem "devise_token_auth", github: "lynndylanhurley/devise_token_auth"
-gem "draper", "~> 4.0"
-gem "flipper", "~> 1.3.5"
-gem "flipper-active_record", "~> 1.3.5"
-gem "flipper-ui", "~> 1.3.5"
-gem "good_job", "~> 4.11.1"
+gem "bootsnap", require: false
 gem "importmap-rails"
-gem "jbuilder", "~> 2.13"
-gem "jsbundling-rails", "~> 1.3"
+gem "jbuilder"
 gem "kamal", require: false
-gem "lograge", "~> 0.14"
-# gem "newrelic_rpm", "~> 9.19"
-gem "pagy", "~> 9.3"
-gem "pg", "~> 1.5"
 gem "propshaft"
+gem "pg", "~> 1.5"
 gem "puma", "~> 6.6"
-gem "pundit", "~> 2.5"
-gem "rack-cors", "~> 3.0"
-gem "rswag-api", "~> 2.16.0"
-gem "rswag-ui", "~> 2.16.0"
-gem "sendgrid", "~> 1.2.4"
 gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
-# gem "sprockets-rails", "~> 3.5", ">= 3.5.2"
 gem "sqlite3", ">= 2.1"
 gem "stimulus-rails"
-gem "strong_migrations", "~> 2.4"
 gem "tailwindcss-rails", "~> 4.3"
 gem "tailwindcss-ruby", "~> 4.1"
 gem "thruster", require: false
 gem "turbo-rails"
-gem "yaaf", "~> 3.0"
 
-# Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
-# Use Active Model has_secure_password
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
-# Use Active Storage variant
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
   gem "annotaterb", "~> 4.17.0"
+  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "dotenv-rails", "~> 3.1.8"
   gem "factory_bot_rails", "~> 6.5"
   gem "faker", "~> 3.5"
   gem "pry-byebug", "~> 3.11", platform: :mri
   gem "pry-rails", "~> 0.3.11"
   gem "rspec-rails", "~> 8.0"
-
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 end
 
 group :development do
@@ -87,19 +62,20 @@ group :development do
 end
 
 group :test do
-  gem "capybara", "~> 3.40"
   gem "faraday-retry", "~> 2.3"
-  gem "knapsack", "~> 4.0"
   gem "octokit", "~> 10.0"
   gem "parallel_tests", "~> 5.3"
   gem "pg_query", "~> 6.1.0"
   gem "prosopite", "~> 2.1.1"
   gem "rspec-openapi", "~> 0.19"
   gem "rspec-retry", github: "rootstrap/rspec-retry", branch: "add-intermittent-callback"
-  gem "selenium-webdriver", "~> 4.34.0"
   gem "shoulda-matchers", "~> 6.5"
   gem "simplecov", "~> 0.22.0", require: false
   gem "webmock", "~> 3.25"
+
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
+  gem "selenium-webdriver"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

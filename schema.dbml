@@ -1,0 +1,138 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Project lore_league {
+  database_type: "PostgreSQL"
+  Note: '''
+  # Lore League Database
+
+  This schema defines the structure of the Lore League web application database.
+
+  ## Overview
+
+  The Lore League webapp is a platform for managing "West Marches" tabletop RPG campaigns.
+  It allows users to create and manage
+  - users
+    - roles - various roles users may have in the system
+    - tags  - tags for categorizing entries
+    - campaigns - This is the overall campaign structure
+      - seasons - seasons within campaigns
+        - sessions - individual game sessions within seasons
+          - users - users participating in sessions with roles
+          - lore - lore entries created by users
+
+  ## Features
+
+  It includes tables for users, campaigns, seasons, sessions, lore entries, and their relationships.
+  The schema is designed to support user authentication, campaign management, and lore creation
+  and is structured to allow for easy expansion and modification as the application grows.
+  '''
+  version: "1.0"
+}
+
+Table users {
+  Note: "Users table for authentication and user management"
+  id integer [primary key]
+  username varchar
+  email varchar
+  encrypted_password varchar
+  reset_password_token varchar
+  reset_password_sent_at timestamp
+  remember_created_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table campaigns {
+  Note: "Campaigns table for managing game campaigns"
+  id integer [primary key]
+  name varchar
+  description text
+  created_at timestamp
+}
+
+Table seasons {
+  Note: "Seasons table for managing game seasons within campaigns"
+  id integer [primary key]
+  campaign_id integer [ref: > campaigns.id, not null]
+  name varchar
+  description text
+  start_date timestamp
+  end_date timestamp
+  created_at timestamp
+}
+
+Table sessions {
+  Note: "Sessions table for managing game sessions within seasons"
+  id integer [primary key]
+  gm_id integer [ref: > users.id, not null]
+  season_id integer [ref: > seasons.id, not null]
+  name varchar
+  description text
+  start_time timestamp
+  end_time timestamp
+  created_at timestamp
+}
+
+Table roles {
+  Note: "User Roles per Session"
+  id integer [primary key]
+  campaign_id integer [ref: > campaigns.id, not null]
+  name varchar
+  description text
+  created_at timestamp
+}
+
+Table lore {
+  Note: "Lore entries for the game, including stories and world-building content"
+  id integer [primary key]
+  author_id integer [ref: > users.id, not null]
+  season_id integer [ref: > seasons.id, not null]
+  session_id integer [ref: > sessions.id, null]
+  title varchar
+  content text
+  created_at timestamp
+}
+
+Table tags {
+  Note: "Tags for categorizing lore entries"
+  id integer [primary key]
+  campaign_id integer [ref: > campaigns.id, not null]
+  name varchar
+  created_at timestamp
+}
+
+/*
+  Join Tables
+*/
+
+Table campaign_user {
+  Note: "Join table for many-to-many relationship between campaigns and users"
+  campaign_id integer [ref: > campaigns.id, not null]
+  user_id integer [ref: > users.id, not null]
+}
+
+Table lore_tag {
+  Note: "Join table for many-to-many relationship between lore and tags"
+  lore_id integer [ref: > lore.id, not null]
+  tag_id integer [ref: > tags.id, not null]
+}
+
+Table role_user {
+  Note: "Connection between Roles and Users in a Campaign"
+  role_id integer [ref: > roles.id, not null]
+  user_id integer [ref: > users.id, not null]
+}
+
+Table season_user {
+  Note: "Users in a Season"
+  season_id integer [ref: > seasons.id, not null]
+  user_id integer [ref: > users.id, not null]
+}
+
+Table session_user {
+  Note: "This table connects users to sessions with their specific roles"
+  role_id integer [ref: > roles.id, not null]
+  session_id integer [ref: > sessions.id, not null]
+  user_id integer [ref: > users.id, not null]
+}
