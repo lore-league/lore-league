@@ -10,7 +10,9 @@ servers:
 
 proxy:
   ssl: false
-  host: www.lore-league.com
+  hosts: 
+    - lore-league.com
+    - www.lore-league.com
   forward_headers: true
 
 # Credentials for your image host.
