@@ -6,14 +6,14 @@
 </header>
 
 <section class="container my-8">
-  <p class="my-8 text-xl">
+  <p class="my-8 text-lg md:text-xl">
     Lore League is an inclusive gaming community playing various table-top RPG systems using a
     <em>"West Marches"</em>
     style system, exclusively at
     <%= render "home/links/gigabites" %>
     in Marietta, GA, every Tuesday night starting at 6 PM (Eastern)
   </p>
-  <p class="mt-4 text-lg">
+  <p class="mt-4 md:text-lg">
     We have our own
     <%= render "home/links/discord" %>
     where we discuss all things Lore League, so join us there for more information!
@@ -21,7 +21,7 @@
 </section>
 
 <%= render "section", id: "location", label: "Location" do %>
-  <p class="text-lg">
+  <p class="md:text-lg">
     As mentioned above, we meet in person every Tuesday at 6 PM at
     <%= render "home/links/gigabites" %>, located at
     <%= link_to "1851 Roswell Road, Marietta, GA, 30062", "https://maps.app.goo.gl/hvNT9KK8ah5gy4rJ7", target: "_blank", class: "text-yellow-400 hover:text-yellow-300" %>
@@ -32,7 +32,7 @@
     site in advance to secure a spot at one of our tables. Signups have reserved seating until 6:15; after that, any remaining seats will be available on a first-come,
     first-served basis. If you don't wish to sign up in advance, please arrive early.
   </p>
-  <p class="mt-4 text-lg italic">
+  <p class="mt-4 md:text-lg italic">
     However, please note that in order to sign up for a session, you will first need to join our
     <%= render "home/links/discord" %>
     and assign yourself the Adventurer role.
@@ -40,11 +40,11 @@
 <% end %>
 
 <%= render "section", id: "game-systems", label: "Game Systems" do %>
-  <p class="text-lg">
+  <p class="md:text-lg">
     Our current focus is on
     <%= link_to "Daggerheart", "https://daggerheart.com", target: "_blank", class: "text-yellow-400 hover:text-yellow-300" %>, and all tables will be running this ruleset this season.
   </p>
-  <p class="text-lg">
+  <p class="md:text-lg">
     However, we're happy to explore additional systems in the future, so keep an eye on this page or visit our
     <%= render "home/links/discord" %>
     for further information.
@@ -52,14 +52,74 @@
 <% end %>
 
 <%= render "section", id: "style-of-play", label: "Style of Play" do %>
-  <p class="text-lg">
+  <p class="md:text-lg">
     We're embracing the whole "table-driven narrative" aspect of Daggerheart. As such, all of our GMs will be running sessions based on improvisation and prompts at the table. As
     a player, don't be surprised if your GM asks *you* to name that random merchant you just met, or describe what you might have found in the chest you opened!
   </p>
 <% end %>
 
+<%= render "section", id: "getting-started", label: "Getting Started" do %>
+  <p class="md:text-lg">
+    <ol class="pl-4 list-decimal list-outside md:text-lg">
+      <li class="mb-2">Log into our
+        <%= render "home/links/discord" %>
+        <ul class="pl-6 list-disc">
+          <li>Go through the onboarding steps</li>
+          <li>Make sure you choose your Roles under the "#Channels & Roles"</li>
+          <ul class="pl-8 list-disc">
+            <li>Choose "I want Adventure" if you want to play in a session</li>
+            <li>Choose "I want to weave Adventure" if you would like to GM a session</li>
+            <li>You _can_ choose multiple roles, and if you're a GM who also wants to play, please choose both.</li>
+          </ul>
+        </ul>
+      </li>
+      <li class="mb-2">
+        <span class="italic">[optional but recommended]</span>
+        Go to our
+        <%= link_to "WestMarches.games", "https://www.westmarches.games/communities/lore-league", target: "_blank", class: "text-yellow-400 hover:text-yellow-300" %>
+        web page and sign in with your Discord account (top right)
+        <ul class="pl-6 list-disc">
+          <li>Go to
+            <%= link_to "WestMarches.games", "https://www.westmarches.games/communities/lore-league/characters", target: "_blank", class: "text-yellow-400 hover:text-yellow-300" %>
+            , click "Create Character" (at the bottom) and fill out a character form. This can be anything you like.
+            <br/>It will also ask for a character URL; most use the link to their character on
+            <%= link_to "Demiplane", "https://app.demiplane.com/nexus/daggerheart", target: "_blank", class: "text-yellow-400 hover:text-yellow-300" %>
+            , but it can be anything.
+          </li>
+          <li>Wait for your character to be approved by a GM (may take a little while, depending on who's online)</li>
+          <li>Go to
+            <%= link_to "WestMarches.games", "https://www.westmarches.games/communities/lore-league/sessions", target: "_blank", class: "text-yellow-400 hover:text-yellow-300" %>
+            and sign up for a table. These generally go online towards the end of the week, so look for them between Friday and the following Tuesday.
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <p class="md:text-lg italic">
+      While step 2 is optional, signing up for a table ahead of time reserves your space at that table until 6:15 PM. After that, spots are filled on a first-come-first-serve
+      basis, so if you don't wish to sign up in advance, we recommend you arrive early.
+    </p>
+  </p>
+<% end %>
+
+<%= render "section", id: "bring-with", label: "What should I bring with me?" do %>
+  <p class="md:text-lg">
+    <ol class="pl-4 list-decimal list-outside">
+      <li class="mb-2">
+        Preferably, a full set of polyhedral dice and a second set of d12 dice which are distinct from each other.
+        <br/>You'll use those 2d12 as your "duality" dice. One will be
+        <span class="font-bold text-amber-300">"hope"</span>, and one will be
+        <span class="font-bold text-red-500">"fear"</span>.
+      </li>
+      <li>
+        You'll also want to bring a character with you, either a paper character sheet and domain cards, or a digital copy.
+        <br/>If you don't have a character yet, and/or are just wanting to try first, we usually have some pre-made characters you can choose from too.
+      </li>
+    </ol>
+  </p>
+<% end %>
+
 <%= render "section", id: "west-marches", label: "West Marches" do %>
-  <p class="text-lg">
+  <p class="md:text-lg">
     What are the West Marches? We're glad you asked! Essentially, a "West Marches" campaign is a community-driven, collaborative storytelling mechanic for RPG games with multiple
     GMs and tables. Each session is a one-shot that adds to the collective fiction, lore, and legends of our shared world, "The Gi'Gabi Coast." Players may freely choose which
     sessions they will participate in, without losing out on any of the "story".
