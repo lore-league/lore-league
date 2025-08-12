@@ -16,5 +16,8 @@
   "files.associations": {
     "*.html.erb": "erb"
   },
-  "erb-formatter.lineLength": 180
+  "erb-formatter.lineLength": 180,
+  "[ruby]": {
+    "editor.defaultFormatter": "rubocop.vscode-rubocop"
+  }
 }

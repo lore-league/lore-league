@@ -1,0 +1,11 @@
+<header class="fixed top-0 left-0 w-full text-white">
+  <nav class="container mx-auto flex items-center justify-end p-4">
+    <div class="flex items-center space-x-4 text-white hover:text-gray-300">
+      <% if authenticated? %>
+        <%= link_to "Logout", session_path, data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to "Login", new_session_path %>
+      <% end %>
+    </div>
+  </nav>
+</header>
